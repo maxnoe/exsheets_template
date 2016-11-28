@@ -1,0 +1,130 @@
+\documentclass[
+  paper=a4,
+  headsepline,
+  parskip=half,
+  headheight=45pt,
+]{scrartcl}
+
+\usepackage[aux]{rerunfilecheck}
+
+% deutsche Spracheinstellungen
+\usepackage{polyglossia}
+\setmainlanguage{german}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+% Fonteinstellungen
+\usepackage{fontspec}
+
+\usepackage[
+  math-style=ISO,    % \
+  bold-style=ISO,    % |
+  sans-style=italic, % | ISO-Standard folgen
+  nabla=upright,     % |
+  partial=upright,   % /
+]{unicode-math}
+\setmathfont{Latin Modern Math}
+
+% richtige Anführungszeichen
+\usepackage[autostyle]{csquotes}
+
+% Zahlen und Einheiten
+\usepackage[
+  locale=DE,                   % deutsche Einstellungen
+  separate-uncertainty=true,   % Immer Fehler mit \pm
+  per-mode=symbol-or-fraction, % m/s im Text, sonst Brüche
+]{siunitx}
+
+% schöne Brüche im Text
+\usepackage{xfrac}
+
+\usepackage[
+  labelfont=bf,        % Tabelle x: Abbildung y: ist jetzt fett
+  font=small,          % Schrift etwas kleiner als Dokument
+  width=0.9\textwidth, % maximale Breite einer Caption schmaler
+]{caption}
+\usepackage{subcaption}
+
+\usepackage{graphicx}
+% größere Variation von Dateinamen möglich
+\usepackage{grffile}
+
+% Standardplatzierung für Floats einstellen
+\usepackage{float}
+\usepackage{scrhack}
+\floatplacement{figure}{htbp}
+\floatplacement{table}{htbp}
+
+% schöne Tabellen
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage{xparse}
+\usepackage{xstring}
+
+%Quellcode
+\usepackage{exsheets-listings}
+\usepackage{listings}
+\usepackage{lstautogobble}
+\lstset{
+  autogobble=true,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=10pt,
+  basicstyle=\ttfamily,
+}
+
+% Kopfzeile:
+\usepackage{scrlayer-scrpage}
+
+
+% Pakate für die Aufgaben
+\usepackage{exsheets}
+\DeclareTranslation{german}{exsheets-exercise-name}{Aufgabe}
+\SetupExSheets{
+  headings=block-subtitle,
+  headings-format={\large\bfseries},
+  subtitle-format={\large\itshape},
+  points/format={\bfseries},
+  counter-format = qu\IfQuestionSubtitleT{:},
+}
+
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=\bfseries\alph*)}
+
+% Hyperlinks im Dokument
+\usepackage[
+  colorlinks,
+  urlcolor=gray,
+  unicode,
+  pdfcreator={},  % PDF-Attribute säubern
+  pdfproducer={}, % "
+]{hyperref}
+\usepackage{bookmark}
+
+% Trennung von Wörtern mit Strichen
+\usepackage[shortcuts]{extdash}
+
+
+%% activate the solutions if jobname is solution
+\IfStrEq{\jobname}{\detokenize{solution}}{% True branch
+  \SetupExSheets[solution]{
+    print=true,
+  }
+}{}
+
+\setkomafont{pagehead}{\bfseries\upshape\large}
+\makeatletter
+\ihead{%
+  \sheetnumber. Übungsblatt\\
+  \@title
+  \handindate
+}
+\chead{}
+\ohead{%
+  \@date \\ 
+  \@author
+}
+\makeatother
